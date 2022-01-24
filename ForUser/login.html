@@ -1,0 +1,90 @@
+
+	<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		<div class="modal-content" style='background-color:transparent; border: none;width:700px'>
+			  <button type="button" class="close" data-dismiss="modal" style="color: rgb(255, 255, 255);">&times;</button>
+			<div class="modal-body">
+					
+	
+				
+
+
+
+
+				
+				<div class="row">
+					<div class="col-8 mx-auto">
+						<div class="card card-body">
+							
+
+					<form class="form-signin">
+						<h1 class="h3 mb-3 font-weight-normal">Dream House Property</h1>
+				<h1 class="h3 mb-3 font-weight-normal">Login In</h1>
+				<label for="inputUser" class="sr-only">User Name</label>
+				<input type="text" id="inputUser" class="form-control" placeholder="User Name" required autofocus>
+				<label for="inputPassword" class="sr-only">Password</label>
+				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+				<div class="checkbox mb-3">
+					<label id="message">
+						<div class="alert alert-danger" role="alert" id="loginFail">Login Fail</div>
+					</label>
+				</div>
+				<button class="btn btn-primary btn-lg btn-block" id="btn_login" onclick="return false;">Login in</button>
+				<button class="btn btn-secondary btn-lg btn-block" id="btn_fgpw" onclick="return false;">Foget Password</button>
+				<p class="mt-5 mb-3 text-muted">Dream House property HK Inc. &copy; 2020</p>
+				</form>
+		
+				</body>
+			<script>
+					$(document).ready(function() {
+						$("#loginFail").hide();
+						$("#btn_login").click(function () { 
+							$.ajax({
+								type: "POST",
+								url: "../login.json",
+								//data: {status: status, name: name},
+								dataType: "json",
+								success: function (response) {
+									var len = response['user'].length;
+									var user = $("#inputUser").val();
+									var password = $("#inputPassword").val();
+									var isLogin = false;
+									for( var i = 0; i<len; i++){
+										var dbuser = response['user'][i]['login_name'];
+										var dbpassword = response['user'][i]['password'];
+										var dbposition = response['user'][i]['position'];
+										if((user==dbuser)&&(password==dbpassword)){
+											$.cookie('user', dbuser, { expires: 1, path: '/' });
+											$.cookie('position', dbposition, { expires: 1, path: '/' });
+											$.cookie('password', dbpassword, { expires: 1, path: '/' });
+											if(dbposition == "Company Manager")window.location.href='../forCompany/company_manager.html';
+											else if(dbposition == "Property Agent")window.location.href='../forAgent/property_agent.html';
+											else window.location.href='index.html';
+											var isLogin = true;
+											break;
+										}
+									}
+									if (isLogin== false){
+										$("#loginFail").slideDown();
+									}
+								}
+							});
+						});
+					});
+			</script>
+		
+		
+		
+
+
+
+
+
+		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

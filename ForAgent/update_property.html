@@ -1,0 +1,203 @@
+<style>
+  td {opacity: 0.6;}
+  tr:hover td{
+    cursor: pointer;opacity: 1;};
+
+  </style>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content" style='background-color:transparent; border: none;'>
+        <button type="button" class="close" data-dismiss="modal" style="color: rgb(255, 255, 255);">&times;</button>
+      <div class="modal-body">
+        <div class="card card-body">
+          <h3 class="text-center mb-4">change the property information</h3>
+          <fieldset>
+              <form id="createAgentForm" method="POST" onsubmit="alert('success!')">
+              
+              <div class="form-group">
+                      Name:<div class="input-lg"><input type="text" class="form-control" name="Name" placeholder="Name" required="required" value="Queen's Road East"></div>
+   
+              </div>  
+              
+              <div class="form-group">
+                District:<select class="form-control" id="exampleFormControlSelect1" >
+                  <option>
+                    Please choose a district
+                  </option>
+                  <option>
+                    Central and Western
+                  </option>
+                  <option>
+                    Eastern
+                  </option>
+                  <option>
+                    Southern
+                  </option>
+                  <option selected>
+                    Wan Chai
+                  </option>
+                  <option>
+                    Sham Shui Po
+                  </option>
+                  <option>
+                    Kowloon City
+                  </option>
+                  <option>
+                    Kwun Tong
+                  </option>
+                  <option>
+                    Wong Tai Sin
+                  </option>
+                  <option>
+                    Yau Tsim Mong
+                  </option>
+                  <option>
+                    New Territories
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                  Address:<input class="form-control input-lg" placeholder="Address" name="Address" type="text" required="required" value="197-213 Queen's Road East, Wan Chai. Main Area. Hong Kong">
+              </div>
+              
+              <div class="form-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile">
+                  <label class="custom-file-label" for="customFile"><i class="fas fa-image"></i>Property picture</label>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <div class="form-row align-items-center">
+                  <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Price</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">$</div>
+                      </div>
+                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Price" value="200000">
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <label class="sr-only" for="inlineFormInputGroup">Size</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">ft<sup>2</sup></div>
+                      </div>
+                      <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Size" value='400'>
+                    </div>
+                  </div>
+            
+                </div>
+
+
+
+              </div>
+              <!--<div class="form-group">
+                  <select class="form-control input-lg">
+                      <option selecterd="">Sequrity Question</option>
+                  </select>
+              </div>-->
+              
+              <div class="checkbox">
+                  <label class="middle">
+                      <input name="terms" type="checkbox"> I have read and agree to the <a href="#">terms of service</a>
+                  </label>
+              </div>
+            
+            
+              <button class="btn btn-primary btn-lg btn-block" id="btn_login" data-dismiss="modal">Confirm!</button>
+          </form>
+          </fieldset>
+      </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<h2>Propetry Action</h2>
+          <div class="table-responsive">
+            <!-- Search form -->
+            <div class="md-form mt-0">
+              <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="userInfo_search">
+            </div>
+            <table class="table table-striped table-m">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Picture</th>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>District</th>
+                  <th>Size</th>
+                  <th>Price</th>
+                  <th>Date On Sell</th>
+                  <th></tr>
+                </tr>
+              </thead>
+              <tbody id="userInfo_tbody"></tbody>
+            </table>
+          </div>
+          <script>
+             function disableProperty(id){
+              var r=confirm("Are you sure Hide Property ID: " + id+"?")
+              if (r==true){
+                }
+              else{}
+              }
+              function promoteProperty(id){
+              var r=confirm("Promote Property ID: " + id+"?")
+              if (r==true){
+                }
+              else{}
+              }
+          $(document).ready(function(){
+            $.ajax({
+              type: "POST",
+					    url: "../property.json",
+              dataType: "json",
+              success: function (response) {
+                var c="";
+                // start="<div class='card-body position-relative'><a href='#' class='stretched-link'>Go somewhere</a>";
+               // var close="</div>";
+                for( var i = 0; i<response['property'].length; i++){
+                    c+="<tr data-toggle=\"modal\" data-target=\"#myModal\" ><td>"+response['property'][i]['id']+"</td>";
+                    c+="<td class='w-25' >"+"<img src='../"+ response['property'][i]['pictureLocation']+"' class='img-fluid img-thumbnail rounded-circle' width='150' alt='agent'></td>";
+                    c+="<td >"+response['property'][i]['name']+"</td>";
+                    c+="<td >"+response['property'][i]['address']+"</td>";
+                    c+="<td >"+response['property'][i]['district']+"</td>";
+                    c+="<td >"+response['property'][i]['size']+"</td>";
+                    c+="<td >$"+response['property'][i]['price']+"</td>";
+                    c+="<td >$"+response['property'][i]['DateOnSell']+"</td></tr>";
+
+                    //c+="<td> <div class='card-body position-relative'><a href='#' class='btn btn-primary stretched-link'>Go somewhere</a></div></td>\n\n</tr>"
+
+
+
+
+
+                    //alert(c);
+                    }
+
+
+                $("#userInfo_tbody").html(c);
+              }
+            });
+            $("#userInfo_search").on("keyup", function() {
+              var value = $(this).val().toLowerCase();
+              $("#userInfo_tbody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+              });
+            });
+          });
+
+          function comfirm(){
+            $.blockUI({ css: { backgroundColor: '#f00', color: '#fff'} });
+            $.unblockUI();
+          }
+          </script>

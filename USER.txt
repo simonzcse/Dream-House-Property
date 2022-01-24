@@ -1,0 +1,11 @@
+Company Manager:
+user name: ctm
+password: 123
+
+Property Agent:
+user name: manly
+password: 456
+
+Customer:
+user name: phoenixwong
+password: 789

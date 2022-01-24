@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+	<link href="../css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap CSS -->
+
+	<style>
+	       /* Set the size of the div element that contains the map */
+	       #map {
+	         height: 500px;  /* The height is 400 pixels */
+	         width: 100%;  /* The width is the width of the web page */
+	        }
+	</style>
+	<script type="text/javascript">
+	</script>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<title></title>
+</head>
+<body>
+
+
+
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/simple-sidebar.css" rel="stylesheet">
+<link href="css/simple-sidebar.css" rel="stylesheet">
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+
+<script>
+	   function initMap() {
+			const uluru = { lat: 22.302711, lng: 114.177216 };
+			const map = new google.maps.Map(document.getElementById("map"), {
+				zoom: 15,
+				center: uluru,
+			});
+			const contentString =
+				'<div id="content">' +
+				'<div id="siteNotice">' +
+				"</div>" +
+				'<h1 id="firstHeading" class="firstHeading">Queen\'s Road East</h1>' +
+				'<div id="bodyContent">' +
+				'<img alt="Responsive image" styleclass="img-fluid" width="40%" height="40%" src="../Banner_Visual_Name_Y_45_OaksideRealty.jpg">' +
+				"<p>G38, West Centre Marina Square, South Horizons, Ap Lei Chau, Aerdeen, Hong Kong</p></div>" +
+				"</div>";
+			const infowindow = new google.maps.InfoWindow({
+				content: contentString,
+			});
+			const marker = new google.maps.Marker({
+				position: uluru,
+				animation: google.maps.Animation.DROP,
+				map,
+				title: "Queen\'s Road East",
+			});
+			marker.addListener("click", () => {
+				infowindow.open(map, marker);
+			});
+		}
+</script> 
+<script defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaxe2PKKFlL-ZC_Jzk-BUxPZ0aLJnjcrU&callback=initMap">
+</script>
+
+
+
+
+
+
+<div class="modal fade" id="appointment" role="dialog">
+	<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		<div class="modal-content" style='background-color:transparent; border: none;width:700px'>
+			  <button type="button" class="close" data-dismiss="modal" style="color: rgb(255, 255, 255);">&times;</button>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-8 mx-auto">
+						<div class="card card-body">
+							<h3 class="text-center mb-4">appointment</h3>
+							<div class="alert alert-danger" id="alert_password">
+								<a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Password is too short.
+							</div>
+							<fieldset>
+								<form id="createAgentForm" method="POST" onsubmit="alert('The appointment have successfully submited.\nThe agent will content you later according to your personal profile !')">
+								<div class="form-group">
+									<input class="form-control input-lg" placeholder="Birthday" name="birthday" type="date" required="required">
+								</div>
+								<div class="checkbox">
+									<label class="middle">
+										<input name="terms" type="checkbox" required> I have read and agree to the <a href="#">terms of service</a>
+									</label>
+								</div>
+								<button type="submit" class="btn btn-primary btn-lg btn-block" id="btn_Submit" >Submit</button>
+							</form>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+	<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		<div class="modal-content" style='background-color:transparent; border: none;width:700px'>
+			  <button type="button" class="close" data-dismiss="modal" style="color: rgb(255, 255, 255);">&times;</button>
+			<div class="modal-body">
+					
+				<div class="row">
+					<div class="col-8 mx-auto">
+						<div class="card card-body">
+							<h3 class="text-center mb-4">Sign-up</h3>
+							<div class="alert alert-danger" id="alert_password">
+								<a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Password is too short.
+							</div>
+							<fieldset>
+								<form id="createAgentForm" method="POST">
+								<div class="form-group">
+									<div class="row">
+										<div class="col"><input type="text" class="form-control" name="givenname" placeholder="First Name" required="required"></div>
+										<div class="col"><input type="text" class="form-control" name="surname" placeholder="Last Name" required="required"></div>
+									</div>        	
+								</div>
+								<div class="form-group">
+									<div class="row">
+										<div class="col"><input type="text" class="form-control" name="login_name" placeholder="User Name" required="required"></div>
+										<div class="col"><input type="number" class="form-control" name="phone" placeholder="Mobile Number" required="required"></div>
+									</div>  
+								</div>  
+								<div class="form-group">
+									<input class="form-control input-lg" placeholder="E-mail Address" name="email" type="email" required="required">
+								</div>
+								
+								<div class="form-group">
+									<div class="row">
+										<div class="col"><input type="text" class="form-control" name="password" minlength="5" placeholder="Password" required="required"></div>
+										<div class="col"><input type="text" class="form-control" name="cpassword" minlength="5" placeholder="Confirm Password" required="required"></div>
+									</div>        	
+								</div>
+								<!--<div class="form-group">
+									<select class="form-control input-lg">
+										<option selecterd="">Sequrity Question</option>
+									</select>
+								</div>-->
+								<div class="form-group">
+									<input class="form-control input-lg" placeholder="Birthday" name="birthday" type="date" required="required">
+								</div>
+								<div class="checkbox">
+									<label class="middle">
+										<input name="terms" type="checkbox" required> I have read and agree to the <a href="#">terms of service</a>
+									</label>
+								</div>
+								<button class="btn btn-primary btn-lg btn-block" id="btn_Submit" onclick="" >Submit</button>
+							</form>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+		  <script type="text/javascript">
+			$(document).ready(function () {
+				$("#alert_password").hide();
+			});
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="login" role="dialog">
+	<div class="modal-dialog">
+		
+		<!-- Modal content-->
+	  <div class="modal-content" style='background-color:transparent; border: none;width:700px'>
+			<button type="button" class="close" data-dismiss="modal" style="color: rgb(255, 255, 255);">&times;</button>
+		  <div class="modal-body">
+				  
+			  <div class="row">
+				  <div class="col-8 mx-auto">
+					  <div class="card card-body">
+						  
+
+				  <form class="form-signin">
+					  <h1 class="h3 mb-3 font-weight-normal">Dream House Property</h1>
+			  <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+			  <label for="inputUser" class="sr-only">User Name</label>
+			  <input type="text" id="inputUser" class="form-control" placeholder="User Name" required autofocus>
+			  <label for="inputPassword" class="sr-only">Password</label>
+			  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+			  <div class="checkbox mb-3">
+				  <label id="message">
+					  <div class="alert alert-danger" role="alert" id="loginFail">Login Fail</div>
+				  </label>
+			  </div>
+			  <button class="btn btn-primary btn-lg btn-block" id="btn_login" onclick="return false;">Login</button>
+			  <p class="mt-5 mb-3 text-muted">Dream House property HK Inc. &copy; 2020</p>
+			  </form>
+	  
+			  </body>
+		  <script>
+				  $(document).ready(function() {
+					  $("#loginFail").hide();
+					  $("#btn_login").click(function () { 
+						  $.ajax({
+							  type: "POST",
+							  url: "../login.json",
+							  //data: {status: status, name: name},
+							  dataType: "json",
+							  success: function (response) {
+								  var len = response['user'].length;
+								  var user = $("#inputUser").val();
+								  var password = $("#inputPassword").val();
+								  var isLogin = false;
+								  for( var i = 0; i<len; i++){
+									  var dbuser = response['user'][i]['login_name'];
+									  var dbpassword = response['user'][i]['password'];
+									  var dbposition = response['user'][i]['position'];
+									  if((user==dbuser)&&(password==dbpassword)){
+										  $.cookie('user', dbuser, { expires: 1, path: '/' });
+										  $.cookie('position', dbposition, { expires: 1, path: '/' });
+										  $.cookie('password', dbpassword, { expires: 1, path: '/' });
+										  if(dbposition == "Company Manager")window.location.href='../forCompany/company_manager.html';
+										  else if(dbposition == "Property Agent")window.location.href='../forAgent/property_agent.html';
+										  else window.location.href='../index.html';
+										  var isLogin = true;
+										  break;
+									  }
+								  }
+								  if (isLogin== false){
+									  $("#loginFail").slideDown();
+								  }
+							  }
+						  });
+					  });
+				  });
+		  </script>
+	  
+	  
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+	  </div>
+  </div>
+
+</div>
+
+		  <script type="text/javascript">
+			$(document).ready(function () {
+				$("#alert_password").hide();
+			});
+		</script>
+
+
+
+
+
+
+
+	<nav class="site-header sticky-top py-1">
+		<div class="container d-flex flex-column flex-md-row justify-content-between">
+				<a aria-label="Product" class="py-2" href="../"><svg class="d-block mx-auto" height="24" role="img" viewbox="0 0 24 24" width="24" xmlns="../">
+				<title>Home</title>
+				<circle cx="12" cy="12" r="10"></circle></svg>
+				</a> 
+				<a class="py-2 d-none d-md-inline-block" href="../">Home</a> 
+				<a class="py-2 d-none d-md-inline-block" href="#" data-toggle="modal" data-target="#login"> Agents/Manager page</a>
+				<a class="py-2 d-none d-md-inline-block"  href="#" data-toggle="modal" data-target="#login">login</a> 
+				<a class="py-2 d-none d-md-inline-block" href="#" data-toggle="modal" data-target="#myModal">register</a>		
+			</div>
+	
+		</nav>
+	<h1 class="container h-100">Queen's Road East property information</h1>
+	<div class="border container h-100">
+		<div class="col p-4 d-flex flex-column position-static">
+			<strong class="d-inline-block mb-2 text-success">New Territories</strong> <img width="40%" height="40%" alt="Responsive image" class="img-fluid" src="../Banner_Visual_Name_Y_45_OaksideRealty.jpg">
+			<h3 class="mb-0">Queen's Road East</h3>
+			<h1><span class="badge badge-primary">$157888</span></h1>
+			<button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#appointment">It's available. Let's make an appointment now.</button>
+			<div class="mb-1 text-muted">
+				Agent: Ken Lo(2000547)
+			</div>
+			<p class="mb-auto">G38, West Centre Marina Square, South Horizons, Ap Lei Chau, Aerdeen, Hong Kong</p>
+			<div id="map"></div>
+		</div><!--The div element for the map -->
+	</div><br>
+	<div class="border container h-100">
+		<h3>You can contact the agents if you interest.</h3>
+		<ul class="list-group">
+			<li aria-disabled="true" class="list-group-item active">Agents' comment</li>
+			<li class="list-group-item list-group-item-dark">You: Hi</li>
+			<li class="list-group-item">Ken Lo(2000547): Hi</li>
+			<li class="list-group-item">Ken Lo(2000547): What can i help you?</li>
+			<li class="list-group-item list-group-item-dark">You: Is it free?</li>
+			<li class="list-group-item list-group-item-warning"><span class="badge badge-secondary">New</span>Ken Lo(2000547): Am i a joke to you?</li>
+			<li class="list-group-item list-group-item-secondary"><input name="message" type="test"><button onclick="alert('submited')">Send</button></li>
+		</ul>
+	</div><br>
+	<div class="border container h-100">
+		<h3>The ranking from others.</h3>
+		<hr>
+		from:Ken Lo(2000547)
+		<table class="table table-hover">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">item</th>
+				<th scope="col">mark(0-10)</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">1</th>
+				<td>View</td>
+				<td>4</td>
+			  </tr>
+			  <tr>
+				<th scope="row">2</th>
+				<td>Sound</td>
+				<td>8</td>
+			  </tr>
+			  <tr>
+				<th scope="row">3</th>
+				<td>Agent communication</td>
+				<td>8</td>
+			  </tr>
+			  <tr>
+				<th scope="row">4</th>
+				<td>Efficiency</td>
+				<td>8</td>
+			  </tr>
+			</tbody>
+		  </table>
+		Message:<p> The agent is not good!</p>
+		<br><hr><br>
+		from:Ken Chan(2000347)
+		<table class="table table-hover">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">item</th>
+				<th scope="col">mark(0-10)</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">1</th>
+				<td>View</td>
+				<td>4</td>
+			  </tr>
+			  <tr>
+				<th scope="row">2</th>
+				<td>Sound</td>
+				<td>8</td>
+			  </tr>
+			  <tr>
+				<th scope="row">3</th>
+				<td>Agent communication</td>
+				<td>2</td>
+			  </tr>
+			  <tr>
+				<th scope="row">4</th>
+				<td>Efficiency</td>
+				<td>8</td>
+			  </tr>
+			</tbody>
+		  </table>
+		Message:<p> The agent so cool!</p>
+		<br><hr><br>
+		frome:Sam Chan(2010347)
+		<table class="table table-hover">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">item</th>
+				<th scope="col">mark(0-10)</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">1</th>
+				<td>View</td>
+				<td>5</td>
+			  </tr>
+			  <tr>
+				<th scope="row">2</th>
+				<td>Sound</td>
+				<td>8</td>
+			  </tr>
+			  <tr>
+				<th scope="row">3</th>
+				<td>Agent communication</td>
+				<td>6</td>
+			  </tr>
+			  <tr>
+				<th scope="row">4</th>
+				<td>Efficiency</td>
+				<td>8</td>
+			  </tr>
+			</tbody>
+		  </table>
+		Message:<p> I have nothing to say!</p>
+		<br><hr><br>
+		
+		<div class="alert alert-primary" role="alert">
+			You are now able to rank the experience.
+		</div>
+		<form onsubmit="alert('Saved!Thank you!');">
+		<table class="table table-hover">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">item</th>
+				<th scope="col">mark(0-10)</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">1</th>
+				<td>View</td>
+				<td><input type="number" class="form-control" placeholder="Please enter your the mark" max="10" min="0" length="5" required></td>
+			  </tr>
+			  <tr>
+				<th scope="row">2</th>
+				<td>Sound</td>
+				<td><input type="number" class="form-control" placeholder="Please enter your the mark" max="10" min="0" required></td>
+			  </tr>
+			  <tr>
+				<th scope="row">3</th>
+				<td>Agent communication</td>
+				<td><input type="number" class="form-control" placeholder="Please enter your the mark" max="10" min="0" required></td>
+			  </tr>
+			  <tr>
+				<th scope="row">4</th>
+				<td>Efficiency</td>
+				<td><input type="number" class="form-control" placeholder="Please enter your the mark" max="10" min="0" required></td>
+			  </tr>
+			</tbody>
+		  </table>
+		Message:<p> <input type="text" class="form-control" placeholder="Please leave you message hear if you want!" ></p>
+		<button type="submit" class="btn btn-primary mb-2" >Submit</button>
+		<br><hr><br>
+		
+	</div><br>
+	<!-- Optional JavaScript -->
+
+
+
+
+	
+</body>
+</html>

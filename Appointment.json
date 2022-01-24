@@ -1,0 +1,46 @@
+{
+    "property": [
+      {
+        "id": 1001,
+        "name":"Queen's Road East",
+        "from": "John Wick",
+        "district": "Wan Chai",
+        "address": "197-213 Queen's Road East, Wan Chai. Main Area. Hong Kong",
+        "price": "200000",
+        "size": "400",
+        "DateOnSell": "2020-01-24",
+        "pictureLocation":"Banner_Visual_Name_Y_45_OaksideRealty.jpg",
+        "available": true,
+		"Appointment_date_and_time":"2020-01-29 11:30",
+		"AgentID":"2"
+      },
+      {
+        "id": 1002,
+        "name":"South Wing",
+        "from": "John Wick",
+        "district": "New Territories",
+        "address": "South Wing, No.6 On Po Lane, Tai Po, New Territories",
+        "price": "20000",
+        "size": "40",
+        "pictureLocation":"bellaire-house.jpg",
+        "DateOnSell": "2020-01-24",
+        "available": true,
+		"Appointment_date_and_time":"2020-01-30 11:45",
+		"AgentID":"2"
+      },
+    {
+      "id": 1006,
+      "name":"Queen's Road East",
+      "from": "Keanu Reeves",
+      "district": "Wan Chai",
+      "address": "197-213 Queen's Road East, Wan Chai. Main Area. Hong Kong",
+      "price": "200000",
+      "size": "400",
+      "DateOnSell": "2020-01-24",
+      "pictureLocation":"Banner_Visual_Name_Y_45_OaksideRealty.jpg",
+      "available": true,
+	  "Appointment_date_and_time":"2020-01-31 15:30",
+		"AgentID":"4"
+    }
+    ]
+  }

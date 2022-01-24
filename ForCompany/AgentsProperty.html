@@ -1,0 +1,70 @@
+<div id="agentsProperty">
+	<script type="text/javascript">
+	       var propertyData = [];
+	       var filterDistrict;
+		   
+			function forward(){
+					$("#agentsProperty").fadeOut(200, function() { $(this).children().remove(); });
+					$("#agentsProperty").fadeIn(200, "linear", function() { $(this).load("PropertyAllInfo.html"); });
+				
+			}
+
+	           function createList(){
+	               var a="" ;
+	               var odd=true;
+	               propertyData.forEach(element => {
+	                   
+	                   var display = "<div class='col-md-6'><div class='row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative'><div class='col p-4 d-flex flex-column position-static'><strong class='d-inline-block mb-2 text-success'>"+
+	                       element.district+"<\/strong> <img alt='Responsive image' class='img-fluid' src='../"+
+	                       element.pictureLocation+"'><h3 class='mb-0'>"+
+	                       element.name+"<\/h3><div class='mb-1 text-muted'>$"+
+	                       element.price+"<\/div><p class='mb-auto'>Agent: "+
+	                       element.from+"<\/p><p class='mb-auto'>"+
+	                       element.address+"<\/p><a class='stretched-link' href='#' onclick='forward()'>Property detail<\/a><\/div><\/div><\/div>";
+	                   
+	                   if(odd)
+	                   {
+	                       a += "<div class='row mb-2'>"+display;
+	                       odd=false;
+   
+	                   }
+	                   else
+	                   {
+	                       a += (display+"<\/div>");
+	                       odd=true;
+	                   }
+	               });
+				   
+	               $(".displayArea").html(a);
+	           }
+
+	       $(document).ready(function () {
+	           (function() {
+	           $.getJSON( "../property.json", {
+	               tagmode: "any",
+	               format: "json"
+	           }).done(function( data ) {
+	               $.each( data, function( i, item ) {
+	                   var k=0;
+	                   item.forEach(element => {
+	                       propertyData[k] = element; 
+	//                      alert(propertyData[k].id+""+propertyData[k].from);
+	                       k++;
+							
+	                   });
+	                   createList();
+	               });
+	               
+	               });
+	           })();
+
+
+			   
+	       });
+	</script>
+	<title></title>
+	
+	<h1 class="container h-100">Agents' Property</h1>
+	
+	<div class="displayArea border container h-100"></div>
+	</div>

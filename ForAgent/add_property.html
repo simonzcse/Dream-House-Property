@@ -1,0 +1,149 @@
+<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Add Property successfully!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary"   data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function sub(){
+  $(document).ready(function () {
+        $('#success').modal('show');
+        return false;
+  });
+}
+</script>
+<div class="container-fluid  py-3">
+  <div class="row">
+      <div class="col-8 mx-auto">
+      
+
+
+              <div class="card card-body">
+                  <h3 class="text-center mb-4">Add new property</h3>
+                  <div class="alert alert-danger" id="alert_password" style="display: none;">
+                      <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Password is too short.
+                  </div>
+                  <fieldset>
+                      <form id="createAgentForm" method="POST" onsubmit="sub(); return false">
+                      
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col"><input type="text" class="form-control" name="Name" placeholder="Name" required="required"></div>
+                          </div>  
+                      </div>  
+                      <div class="form-group">
+                        <select class="form-control" id="exampleFormControlSelect1" required="required">
+                          <option>
+                            Please choose a district
+                          </option>
+                          <option>
+                            Central and Western
+                          </option>
+                          <option>
+                            Eastern
+                          </option>
+                          <option>
+                            Southern
+                          </option>
+                          <option>
+                            Wan Chai
+                          </option>
+                          <option>
+                            Sham Shui Po
+                          </option>
+                          <option>
+                            Kowloon City
+                          </option>
+                          <option>
+                            Kwun Tong
+                          </option>
+                          <option>
+                            Wong Tai Sin
+                          </option>
+                          <option>
+                            Yau Tsim Mong
+                          </option>
+                          <option>
+                            New Territories
+                          </option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                          <input class="form-control input-lg" placeholder="Address" name="Address" type="text" required="required">
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="custom-file">
+                          <input type="file" class="custom-file-input" id="customFile" required="required">
+                          <label class="custom-file-label" for="customFile"><i class="fas fa-image"></i>Property picture</label>
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <div class="form-row align-items-center">
+                          <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInputGroup">Price</label>
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">$</div>
+                              </div>
+                              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Price" required="required">
+                            </div>
+                          </div>
+                          <div class="col-auto">
+                            <label class="sr-only" for="inlineFormInputGroup">Size</label>
+                            <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">ft<sup>2</sup></div>
+                              </div>
+                              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Size" required="required">
+                            </div>
+                          </div>
+                    
+                        </div>
+
+
+
+                      </div>
+                      <!--<div class="form-group">
+                          <select class="form-control input-lg">
+                              <option selecterd="">Sequrity Question</option>
+                          </select>
+                      </div>-->
+                      
+                      <div class="checkbox">
+                          <label class="middle">
+                              <input name="terms" type="checkbox" required="required"> I have read and agree to the <a href="#">terms of service</a>
+                          </label>
+                      </div>
+                    
+                    
+                      <button class="btn btn-primary btn-lg btn-block" id="btn_login" >Confirm!</button>
+                  </form>
+                  </fieldset>
+              </div>
+      </div>
+  </div>
+</div>
+
+
+
+<script>
+  $(document).ready(function () {
+      $("#alert_password").hide();
+      $("#alert_password2").hide();
+  });
+</script>

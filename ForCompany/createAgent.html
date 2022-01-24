@@ -1,0 +1,95 @@
+<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Success</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Create Agent successfully!!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary"   data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function sub(){
+    $(document).ready(function () {
+          $('#success').modal('show');
+          return false;
+    });
+  }
+  </script>
+<div class="container-fluid  py-3">
+    <div class="row">
+        <div class="col-8 mx-auto">
+                <div class="card card-body">
+                    <h3 class="text-center mb-4">Create Agent</h3>
+                    <div class="alert alert-danger" id="alert_password">
+                        <a class="close font-weight-light" data-dismiss="alert" href="#" id="Alert">×</a>Password is too short.
+                    </div>
+                    <div class="alert alert-danger" id="alert_password2">
+                        <a class="close font-weight-light" data-dismiss="alert" href="#" id="Alert">×</a>Password not Equal Verify Password.
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $("#alert_password").hide();
+                            $("#alert_password2").hide();
+                        });
+                    </script>
+                    <fieldset>
+                        <form id="createAgentForm" method="POST" enctype="multipart/form-data" onsubmit="sub(); return false">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col"><input type="text" class="form-control" id="givenname" name="givenname" placeholder="First Name" required="required">
+                                    <div class="invalid-feedback">
+                                        Please provide First Name.
+                                      </div></div>
+                                <div class="col"><input type="text" class="form-control" id="surname" name="surname" placeholder="Last Name" required="required"></div>
+                            </div>        	
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col"><input type="text" class="form-control" id="login_name" name="login_name" placeholder="User Name" required="required"></div>
+                                <div class="col"><input type="number" class="form-control" id="phone" name="phone" placeholder="Mobile Number" required="required"></div>
+                            </div>  
+                        </div>  
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="E-mail Address" id="email" name="email" type="email" required="required">
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col"><input type="password" class="form-control" id="password" name="password" minlength="5" placeholder="Password" required="required"></div>
+                                <div class="col"><input type="password" class="form-control" id="cpassword" name="cpassword" minlength="5" placeholder="Confirm Password" required="required"></div>
+                            </div>        	
+                        </div>
+                        <!--<div class="form-group">
+                            <select class="form-control input-lg">
+                                <option selecterd="">Sequrity Question</option>
+                            </select>
+                        </div>-->
+                        <div class="form-group">
+                            <input class="form-control input-lg" placeholder="Birthday" id="birthday" name="birthday" type="date" required="required">
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile">
+                            <label class="custom-file-label" for="customFile"><i class="fas fa-image"></i>Picture</label>
+                          </div>
+                          <div class="checkbox">
+                            <label class="middle" style="color: red;">
+                                **Please Fill All Text Box
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" id="btn_login">Create</button>
+                    </form>
+                    </fieldset>
+                </div>
+        </div>
+    </div>
+</div>
+

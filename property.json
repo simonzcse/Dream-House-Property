@@ -1,0 +1,76 @@
+{
+    "property": [
+      {
+        "id": 1001,
+        "name":"Queen's Road East",
+        "from": "Aleeza Wormald",
+        "district": "Wan Chai",
+        "address": "197-213 Queen's Road East, Wan Chai. Main Area. Hong Kong",
+        "price": "976",
+        "size": "400",
+        "DateOnSell": "2020-01-24",
+        "pictureLocation":"Banner_Visual_Name_Y_45_OaksideRealty.jpg",
+        "available": true
+      },
+      {
+        "id": 1002,
+        "name":"South Wing",
+        "from": "Mayson Pacheco",
+        "district": "New Territories",
+        "address": "South Wing, No.6 On Po Lane, Tai Po, New Territories",
+        "price": "678",
+        "size": "80",
+        "pictureLocation":"bellaire-house.jpg",
+        "DateOnSell": "2020-01-24",
+        "available": true
+      },
+      {
+        "id": 1003,
+        "name":"South Wing",
+        "from": "Jonathon Bass",
+        "district": "New Territories",
+        "address": "South Wing, No.6 On Po Lane, Tai Po, New Territories",
+        "price": "99089789",
+        "size": "40",
+        "pictureLocation":"CARLES_FAUS_ARQUITECTURA_-_CARMEN_HOUSE_(2).jpg",
+        "DateOnSell": "2020-01-24",
+        "available": true
+      },
+      {
+        "id": 1004,
+        "name":"South Wing",
+        "from": "Leoni Rollins",
+        "district": "New Territories",
+        "address": "South Wing, No.6 On Po Lane, Tai Po, New Territories",
+        "price": "123",
+        "size": "40",
+        "pictureLocation":"Modern-House-Design-1.1587212339.6759.jpg",
+        "DateOnSell": "2020-01-24",
+        "available": true
+    },
+    {
+      "id": 1005,
+      "name":"South Wing",
+      "from": "Random Names",
+      "district": "New Territories",
+      "address": "South Wing, No.6 On Po Lane, Tai Po, New Territories",
+      "price": "234",
+      "size": "40",
+      "pictureLocation":"Modern-House-Design-1.1587212339.6759.jpg",
+      "DateOnSell": "2020-01-24",
+      "available": true
+  },
+    {
+      "id": 1006,
+      "name":"Queen's Road East",
+      "from": "Kerys Garner",
+      "district": "Wan Chai",
+      "address": "197-213 Queen's Road East, Wan Chai. Main Area. Hong Kong",
+      "price": "4756800",
+      "size": "400",
+      "DateOnSell": "2020-01-24",
+      "pictureLocation":"Banner_Visual_Name_Y_45_OaksideRealty.jpg",
+      "available": true
+    }
+    ]
+  }

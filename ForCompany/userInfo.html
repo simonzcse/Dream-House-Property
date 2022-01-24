@@ -1,0 +1,67 @@
+<h2>User Infromation</h2>
+          <div class="table-responsive">
+            <!-- Search form -->
+            <div class="md-form mt-0">
+              <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="userInfo_search">
+            </div>
+            <table class="table table-striped table-m">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Surname</th>
+                  <th>Givenname</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>Position</th>
+                </tr>
+              </thead>
+              <tbody id="userInfo_tbody">
+            </table>
+          </div>
+          <script>
+             function disableAgent(id){
+              var r=confirm("Are you sure disable Agent ID: " + id+"?")
+              if (r==true){
+                }
+              else{}
+              }
+              function enableAgent(id){
+              var r=confirm("Enable Agent ID: " + id+"?")
+              if (r==true){
+                }
+              else{}
+              }
+          $(document).ready(function(){
+            $.ajax({
+              type: "POST",
+					    url: "../login.json",
+              dataType: "json",
+              success: function (response) {
+                var c="";
+                for( var i = 0; i<response['user'].length; i++){
+                  var dbposition = response['user'][i]['position'];
+                  if (dbposition!="Client"){continue;}
+                  c+="<tr>";
+                    c+="<td>"+response['user'][i]['id']+"</td>";
+                    c+="<td>"+response['user'][i]['surname']+"</td>";
+                    c+="<td>"+response['user'][i]['givenname']+"</td>";
+                    c+="<td>"+response['user'][i]['email']+"</td>";
+                    c+="<td>"+response['user'][i]['phone']+"</td>";
+                    c+="<td>"+response['user'][i]['position']+"</td>";
+                    //if(response['user'][i]['enable']==true){
+                     // c+="<button type='button' class='btn btn-danger' onclick='disableAgent("+response['user'][i]['id']+")'><i class='far fa-trash-alt'></i></button></td>";
+                   // }else{
+                   //   c+="<button type='button' class='btn btn-success' onclick='enableAgent("+response['user'][i]['id']+")'><i class=\"fas fa-check\"></i></button></td>";
+                    //}
+                }
+                $("#userInfo_tbody").html(c);
+              }
+            });
+            $("#userInfo_search").on("keyup", function() {
+              var value = $(this).val().toLowerCase();
+              $("#userInfo_tbody tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+              });
+            });
+          });
+          </script>

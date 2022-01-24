@@ -1,0 +1,74 @@
+<style>
+	       /* Set the size of the div element that contains the map */
+	       #map {
+	         height: 400px;  /* The height is 400 pixels */
+	         width: 100%;  /* The width is the width of the web page */
+	        }
+	</style>
+	<h1 class="container h-100">Queen's Road East property property information</h1>
+	<div class="border container h-100">
+		<div class="col p-4 d-flex flex-column position-static">
+			<strong class="d-inline-block mb-2 text-success">New Territories</strong> <img alt="Responsive image" class="img-fluid" src="../Banner_Visual_Name_Y_45_OaksideRealty.jpg">
+			<h3 class="mb-0">Queen's Road East property</h3>
+			<h1><span class="badge badge-primary">$157888</span></h1>
+			<div class="mb-1 text-muted">
+				Agent: Ken Lo(2000547)
+			</div>
+			<p class="mb-auto">G38, West Centre Marina Square, South Horizons, Ap Lei Chau, Aerdeen, Hong Kong</p>
+			<div id="map"></div>
+		</div><!--The div element for the map -->
+	</div><br>
+	<div class="border container">
+		<ul class="list-group">
+			<li aria-disabled="true" class="list-group-item active">comment from Mr.hi(11023445235):</li>
+			<li class="list-group-item list-group-item-dark">Mr.hi(11023445235): Hi</li>
+			<li class="list-group-item">You: Hi</li>
+			<li class="list-group-item">You: What can i help you?</li>
+			<li class="list-group-item list-group-item-dark">Mr.hi(11023445235): Is it free?</li>
+			<li class="list-group-item">You: Am i a joke to you?</li>
+			<li class="list-group-item list-group-item-secondary"><input name="message" type="test"><button>Send</button><button>Close</button></li>
+		</ul><br>
+		<ul class="list-group">
+			<li aria-disabled="true" class="list-group-item active">comment from Mr.Yo(8566345323):</li>
+			<li class="list-group-item list-group-item-dark">Mr.Yo(8566345323): Hi</li>
+			<li class="list-group-item">You: Hi</li>
+			<li class="list-group-item">You: What can i help you?</li>
+			<li class="list-group-item list-group-item-warning"><span class="badge badge-secondary">New</span>Mr.Yo(8566345323): Is it free?</li>
+			<li class="list-group-item list-group-item-secondary"><input name="message" type="test"><button>Send</button><button>Close</button></li>
+		</ul>
+	</div><!-- Optional JavaScript -->
+	
+	
+<script>
+	function initMap() {
+		 const uluru = { lat: 22.302711, lng: 114.177216 };
+		 const map = new google.maps.Map(document.getElementById("map"), {
+			 zoom: 15,
+			 center: uluru,
+		 });
+		 const contentString =
+			 '<div id="content">' +
+			 '<div id="siteNotice">' +
+			 "</div>" +
+			 '<h1 id="firstHeading" class="firstHeading">Queen\'s Road East</h1>' +
+			 '<div id="bodyContent">' +
+			 '<img alt="Responsive image" styleclass="img-fluid" width="40%" height="40%" src="../Banner_Visual_Name_Y_45_OaksideRealty.jpg">' +
+			 "<p>G38, West Centre Marina Square, South Horizons, Ap Lei Chau, Aerdeen, Hong Kong</p></div>" +
+			 "</div>";
+		 const infowindow = new google.maps.InfoWindow({
+			 content: contentString,
+		 });
+		 const marker = new google.maps.Marker({
+			 position: uluru,
+			 animation: google.maps.Animation.DROP,
+			 map,
+			 title: "Queen\'s Road East",
+		 });
+		 marker.addListener("click", () => {
+			 infowindow.open(map, marker);
+		 });
+	 }
+</script> 
+<script defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaxe2PKKFlL-ZC_Jzk-BUxPZ0aLJnjcrU&callback=initMap">
+</script>

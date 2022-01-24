@@ -1,0 +1,53 @@
+{
+    "user":
+        [
+            {
+                "id":1,
+                "surname":"Chan",
+                "givenname":"Tai Man",
+                "email":"ctm@gmail.com",
+                "login_name":"ctm",
+                "password":"123",
+                "birthday":"1978-11-09",
+                "phone":12345678,
+                "position":"Company Manager",
+                "enable":true
+            },
+            {
+                "id":2,
+                "surname":"Wick",
+                "givenname":"John",
+                "email":"wick@gmail.com",
+                "login_name":"manly",
+                "password":"456",
+                "birthday":"1999-01-03",
+                "phone":12245678,
+                "position":"Property Agent",
+                "enable":true
+            },
+            {
+                "id":3,
+                "surname":"Wong",
+                "givenname":"Siu Fung",
+                "email":"phoenixwong@gmail.com",
+                "login_name":"phoenixwong",
+                "password":"789",
+                "birthday":"1989-11-30",
+                "phone":12345698,
+                "position":"Customer",
+                "enable":true
+            },
+            {
+                "id":4,
+                "surname":"Reeves",
+                "givenname":"Keanu",
+                "email":"2077@gmail.com",
+                "login_name":"reeve",
+                "password":"444444",
+                "birthday":"1969-04-03",
+                "phone":12245618,
+                "position":"Property Agent",
+                "enable":false
+            }
+        ]
+}

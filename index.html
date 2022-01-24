@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+	<!-- Bootstrap core CSS -->
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/simple-sidebar.css" rel="stylesheet">
+	<link href="css/simple-sidebar.css" rel="stylesheet">
+	<!-- Bootstrap core JavaScript -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+	<script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+	<script src="https://cdn.staticfile.org/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js">
+	</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+	</script>
+	<script type="text/javascript">
+	       var propertyData = [];
+		   var minPrice = 0;
+		   var maxPrice = 9999999999;
+		   var minSize = 0;
+		   var maxSize = 9999999999;
+		   var filDistrict = "All";
+
+		  
+
+				function changeFilter(){
+					filDistrict = $("#district").val();
+					minPrice = parseInt($("#priceMin").val());
+					maxPrice = parseInt($("#priceMax").val());
+					minSize = parseInt($("#sizeMin").val());
+					maxSize = parseInt($("#sizeMax").val());
+					createList();
+				}
+						
+
+				function checkFilter(size,price,district){
+
+					if((size>=minSize)&&(size<=maxSize)){
+						if((price>=minPrice)&&(price<=maxPrice)){
+							if( !( filDistrict.localeCompare(district) )  ||  !( filDistrict.localeCompare("All") ) ){
+								return true;
+							}
+						}
+					
+						
+					}
+				}
+
+
+	            function createList(){
+	               var a = "";
+	               var odd=true;
+
+	                propertyData.forEach(element => {
+	                   
+						if(checkFilter(element.size,element.price,element.district)){
+							var display = "<div class='col-md-6'><div class='row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative'><div class='col p-4 d-flex flex-column position-static'><strong class='d-inline-block mb-2 text-success'>"+
+								element.district+"<\/strong> <img alt='Responsive image' class='img-fluid' src='"+
+								element.pictureLocation+"'><h3 class='mb-0'>"+
+								element.name+"<\/h3><div class='mb-1 text-muted'>$"+
+								element.price+"<\/div> <div class='mb-1 text-muted'>M<sup>2</sup>:"+
+								element.size+"<\/div> <p class='mb-auto'>Agent: "+
+								element.from+"<\/p><p class='mb-auto'>"+
+								element.address+"<\/p><a class='stretched-link' href='ForUser/PropertyInfo.html'>Property detail<\/a><\/div><\/div><\/div>";
+							
+							if(odd)
+							{
+								a += "<div class='row mb-2'>"+display;
+								odd=false;
+								
+							}
+							else
+							{
+								a += (display+"<\/div>");
+								odd=true;
+							}
+
+				   		}
+	                });
+
+	                $(".displayArea").html(a);
+	           }
+
+
+	           function showdiv(){
+	               $("#hpn").css({"display":"block"});
+	               $("#strHref").html("filter-");
+	               $("#strHref").attr("href","javascript:hidediv()");
+	           }
+	           function hidediv(){
+	             $("#hpn").css({"display":"none"});
+	               $("#strHref").html("filter+");
+	             $("#strHref").attr("href","javascript:showdiv()");
+	           }
+
+	           function filter(){
+
+	           }
+
+	       $(document).ready(function () {
+	           (function() {
+	           $.getJSON( "property.json", {
+	               tagmode: "any",
+	               format: "json"
+	           }).done(function( data ) {
+	               $.each( data, function( i, item ) {
+	                   var k=0;
+	                   item.forEach(element => {
+	                       propertyData[k] = element; 
+	//                      alert(propertyData[k].id+""+propertyData[k].from);
+	                       k++;
+
+	                   });
+	                   createList();
+	               });
+	               
+	               });
+	           })();
+	       });
+	</script>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<title></title>
+</head>
+<body>
+
+
+
+
+
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content" style='background-color:transparent; border: none;width:700px'>
+			  <button type="button" class="close" data-dismiss="modal" style="color: rgb(255, 255, 255);">&times;</button>
+			<div class="modal-body">
+					
+    
+    <div class="row">
+        <div class="col-8 mx-auto">
+                <div class="card card-body">
+                    <h3 class="text-center mb-4">Sign-up</h3>
+                    <div class="alert alert-danger" id="alert_password">
+                        <a class="close font-weight-light" data-dismiss="alert" href="#">×</a>Password is too short.
+                    </div>
+                    <fieldset>
+						<form id="createAgentForm" method="POST">
+						<div class="form-group">
+							<div class="row">
+								<div class="col"><input type="text" class="form-control" name="givenname" placeholder="First Name" required="required"></div>
+								<div class="col"><input type="text" class="form-control" name="surname" placeholder="Last Name" required="required"></div>
+							</div>        	
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col"><input type="text" class="form-control" name="login_name" placeholder="User Name" required="required"></div>
+								<div class="col"><input type="number" class="form-control" name="phone" placeholder="Mobile Number" required="required"></div>
+							</div>  
+						</div>  
+						<div class="form-group">
+							<input class="form-control input-lg" placeholder="E-mail Address" name="email" type="email" required="required">
+						</div>
+						
+						<div class="form-group">
+							<div class="row">
+								<div class="col"><input type="text" class="form-control" name="password" minlength="5" placeholder="Password" required="required"></div>
+								<div class="col"><input type="text" class="form-control" name="cpassword" minlength="5" placeholder="Confirm Password" required="required"></div>
+							</div>        	
+						</div>
+						<!--<div class="form-group">
+							<select class="form-control input-lg">
+								<option selecterd="">Sequrity Question</option>
+							</select>
+						</div>-->
+						<div class="form-group">
+							<input class="form-control input-lg" placeholder="Birthday" name="birthday" type="date" required="required">
+						</div>
+						<div class="checkbox">
+							<label class="middle">
+								<input name="terms" type="checkbox" required> I have read and agree to the <a href="#">terms of service</a>
+							</label>
+						</div>
+						<button class="btn btn-primary btn-lg btn-block" id="btn_Submit" onclick="" >Submit</button>
+					</form>
+					</fieldset>
+                </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#alert_password").hide();
+    });
+</script>
+			</div>
+			</div>
+		  </div>
+		  
+
+
+
+		  <div class="modal fade" id="login" role="dialog">
+			<div class="modal-dialog">
+				
+				<!-- Modal content-->
+			  <div class="modal-content" style='background-color:transparent; border: none;width:700px'>
+					<button type="button" class="close" data-dismiss="modal" style="color: rgb(255, 255, 255);">&times;</button>
+				  <div class="modal-body">
+						  
+		  
+					  
+		
+		
+		
+		
+					  
+					  <div class="row">
+						  <div class="col-8 mx-auto">
+							  <div class="card card-body">
+								  
+		
+						  <form class="form-signin">
+							  <h1 class="h3 mb-3 font-weight-normal">Dream House Property</h1>
+					  <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+					  <label for="inputUser" class="sr-only">User Name</label>
+					  <input type="text" id="inputUser" class="form-control" placeholder="User Name" required autofocus>
+					  <label for="inputPassword" class="sr-only">Password</label>
+					  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+					  <div class="checkbox mb-3">
+						  <label id="message">
+							  <div class="alert alert-danger" role="alert" id="loginFail">Login Fail</div>
+						  </label>
+					  </div>
+					  <button class="btn btn-primary btn-lg btn-block" id="btn_login" onclick="return false;">Login</button>
+					  <p class="mt-5 mb-3 text-muted">Dream House property HK Inc. &copy; 2020</p>
+					  </form>
+			  
+					  </body>
+				  <script>
+						  $(document).ready(function() {
+							  $("#loginFail").hide();
+							  $("#btn_login").click(function () { 
+								  $.ajax({
+									  type: "POST",
+									  url: "login.json",
+									  //data: {status: status, name: name},
+									  dataType: "json",
+									  success: function (response) {
+										  var len = response['user'].length;
+										  var user = $("#inputUser").val();
+										  var password = $("#inputPassword").val();
+										  var isLogin = false;
+										  for( var i = 0; i<len; i++){
+											  var dbuser = response['user'][i]['login_name'];
+											  var dbpassword = response['user'][i]['password'];
+											  var dbposition = response['user'][i]['position'];
+											  if((user==dbuser)&&(password==dbpassword)){
+												  $.cookie('user', dbuser, { expires: 1, path: '/' });
+												  $.cookie('position', dbposition, { expires: 1, path: '/' });
+												  $.cookie('password', dbpassword, { expires: 1, path: '/' });
+												  if(dbposition == "Company Manager")window.location.href='forCompany/company_manager.html';
+												  else if(dbposition == "Property Agent")window.location.href='forAgent/property_agent.html';
+												  else window.location.href='index.html';
+												  var isLogin = true;
+												  break;
+											  }
+										  }
+										  if (isLogin== false){
+											  $("#loginFail").slideDown();
+										  }
+									  }
+								  });
+							  });
+						  });
+				  </script>
+			  
+			  
+			  
+		
+		
+		
+		
+		
+			  
+							  </div>
+						  </div>
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+		
+		
+		
+		
+		
+		
+		</div>
+		
+				  <script type="text/javascript">
+					$(document).ready(function () {
+						$("#alert_password").hide();
+					});
+				</script>
+
+
+
+
+
+
+
+
+
+	<nav class="site-header sticky-top py-1">
+		<div class="container d-flex flex-column flex-md-row justify-content-between">
+			<a aria-label="Product" class="py-2" href="#"><svg class="d-block mx-auto" height="24" role="img" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+			<title>Product</title>
+			<circle cx="12" cy="12" r="10"></circle>
+			<path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg></a> <a class="py-2 d-none d-md-inline-block" href="index.html">Home</a>  
+				<a class="py-2 d-none d-md-inline-block" href="#" data-toggle="modal" data-target="#login">Agents/Manager page</a> 
+				<a class="py-2 d-none d-md-inline-block" href="#" data-toggle="modal" data-target="#login">login</a> 
+				<a class="py-2 d-none d-md-inline-block" href="#" data-toggle="modal" data-target="#myModal">register</a>
+		</div>
+	</nav>
+	<h1 class="container h-100">Welcome! Lets look for the property you like</h1>
+	<div id="hpn" style="display:none">
+		<div class="border container h-100">
+			<div class="alert alert-secondary" role="alert">
+				<h5>You can input the items for searching result:</h5>
+			</div>
+			<div class="">
+				<form>
+					<div class="form-group">
+						<label for="exampleFormControlSelect1">District:</label> <select class="form-control" id="district">
+							<option>
+								All
+							</option>
+							<option>
+								Central and Western
+							</option>
+							<option>
+								Eastern
+							</option>
+							<option>
+								Southern
+							</option>
+							<option>
+								Wan Chai
+							</option>
+							<option>
+								Sham Shui Po
+							</option>
+							<option>
+								Kowloon City
+							</option>
+							<option>
+								Kwun Tong
+							</option>
+							<option>
+								Wong Tai Sin
+							</option>
+							<option>
+								Yau Tsim Mong
+							</option>
+							<option>
+								New Territories
+							</option>
+						</select>
+					</div>
+					<div>
+						price(HKD) interval:<br>
+						<div class="form-row">
+							<div class="col-md-3 mb-3">
+								<label for="priceMin">Min:</label> <input aria-describedby="validationServer05Feedback" class="form-control" id="priceMin" min="0" max="999999" type="number" value="0"> <label for="priceMax"></label>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label for="priceMax"><label for="priceMax">to Max:</label> <input aria-describedby="validationServer05Feedback" class="form-control" id="priceMax" min="0" max="9999999999" type="number" value="9999999999"></label>
+							</div>
+						</div>
+					</div>
+					<div>
+						size interval:<br>
+						<div class="form-row">
+							<div class="col-md-3 mb-3">
+								<label for="size Min">Min:</label> <input aria-describedby="validationServer05Feedback" class="form-control" id="sizeMin" min="0" max="999999" type="number" value="0"> <label for="priceMax"></label>
+							</div>
+							<div class="col-md-3 mb-3">
+								<label for="priceMax"><label for="size Max">to Max:</label> <input aria-describedby="validationServer05Feedback" class="form-control" id="sizeMax" min="0" max="9999999999" type="number" value="9999999999"></label>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div><button class="btn btn-primary" onclick="changeFilter()" type="submit">Submit form</button>
+		</div>
+	</div>
+	<p class="slide"><a class="btn-slide row h-100 justify-content-center" href="javascript:showdiv();" id="strHref">filter+</a></p>
+	<div class="displayArea border container h-100"></div>
+</body>
+</html>

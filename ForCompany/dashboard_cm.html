@@ -1,0 +1,331 @@
+<style>
+    /* Set the size of the div element that contains the map */
+    #map {
+      height: 800px;  /* The height is 400 pixels */
+      width: 100%;  /* The width is the width of the web page */
+     }
+</style>
+<script>
+     var map;
+        var InforObj = [];
+        var centerCords = {
+            lat: 22.302711,
+            lng: 114.177216
+        };
+        var markersOnMap = [{
+                placeName: "Australia (Uluru)",
+                LatLng: [{
+                    lat: 22.302711,
+                    lng: 114.177216
+                }]
+            },
+            {
+                placeName: "Australia (Melbourne)",
+                LatLng: [{
+                    lat: 22.342711,
+                    lng: 114.237216
+                }]
+            },
+            {
+                placeName: "Australia (Canberra)",
+                LatLng: [{
+                    lat: 22.364711,
+                    lng: 114.177616
+                }]
+            },
+            {
+                placeName: "Australia (Gold Coast)",
+                LatLng: [{
+                    lat: 22.303561,
+                    lng: 114.166716
+                }]
+            },
+            {
+                placeName: "Australia (Perth)",
+                LatLng: [{
+                    lat: 22.408711,
+                    lng: 113.9776   
+                }]
+            }
+        ];
+
+        window.onload = function () {
+            initMap();
+        };
+
+        function addMarkerInfo() {
+            for (var i = 0; i < markersOnMap.length; i++) {
+                var contentString = '<div id="content"><h1>' +
+                    '<div id="content">' +
+				'<div id="siteNotice">' +
+				"</div>" +
+				'<h1 id="firstHeading" class="firstHeading">Queen\'s Road East</h1>' +
+				'<div id="bodyContent">' +
+				'<img alt="Responsive image" styleclass="img-fluid" width="40%" height="40%" src="../Banner_Visual_Name_Y_45_OaksideRealty.jpg">' +
+                '<h1><span class="badge badge-primary">$157888</span></h1>'+
+                '<div style="font-size: small;" class="mb-1 text-muted">Agent: Ken Lo(2000547)' +
+				"<p  class='mb-auto'>G38, West Centre Marina Square, South Horizons, Ap Lei Chau, Aerdeen, Hong Kong</p></div>" +
+				"</div></div>";
+
+                const marker = new google.maps.Marker({
+                    position: markersOnMap[i].LatLng[0],
+                    map: map
+                });
+
+                const infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                    maxWidth: 600
+                });
+
+                marker.addListener('click', function () {
+                    closeOtherInfo();
+                    infowindow.open(marker.get('map'), marker);
+                    InforObj[0] = infowindow;
+                });
+                // marker.addListener('mouseover', function () {
+                //     closeOtherInfo();
+                //     infowindow.open(marker.get('map'), marker);
+                //     InforObj[0] = infowindow;
+                // });
+                // marker.addListener('mouseout', function () {
+                //     closeOtherInfo();
+                //     infowindow.close();
+                //     InforObj[0] = infowindow;
+                // });
+            }
+        }
+
+        function closeOtherInfo() {
+            if (InforObj.length > 0) {
+                /* detach the info-window from the marker ... undocumented in the API docs */
+                InforObj[0].set("marker", null);
+                /* and close it */
+                InforObj[0].close();
+                /* blank the array */
+                InforObj.length = 0;
+            }
+        }
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: centerCords
+            });
+            addMarkerInfo();
+        }
+</script> 
+<script defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaxe2PKKFlL-ZC_Jzk-BUxPZ0aLJnjcrU&callback=initMap">
+</script>
+
+<div id="content" >
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+        <!-- Page Heading -->
+        <h2>Dashboard</h2>
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Total Earnings (Monthly)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$100,000</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Total Earnings (Annual)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$1,200,000</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Trade (MONTHLY)
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">68</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-exchange-alt fa-2x text-gray-300 "></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Apartments</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">6</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-home fa-2x text-gray-300 "></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    User</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-user fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    Agent</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fa fa-address-card fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Agents' Property
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">6</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-hotel fa-2x text-gray-300 "></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                    Arranged Appointments</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300 "></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+             <!-- Content Row -->
+             <div class="row">
+
+                <!-- Content Column -->
+                <div class="col-lg-6 mb-4">
+
+                    <!-- Project Card Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Agents' Property</h6>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="small font-weight-bold">John Wick <span
+                                    class="float-right">3</span></h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 50%"
+                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <h4 class="small font-weight-bold">Keanu Reeves <span
+                                    class="float-right">3</span></h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 50%"
+                                    aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+
+                    <!-- Project Card Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Apartments District</h6>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="small font-weight-bold">Hong Kong <span
+                                    class="float-right">0%</span></h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 0%"
+                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <h4 class="small font-weight-bold">Kowloon <span
+                                    class="float-right">40%</span></h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                    aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <h4 class="small font-weight-bold">
+                                New Territories <span
+                                    class="float-right">60%</span></h4>
+                            <div class="progress mb-4">
+                                <div class="progress-bar" role="progressbar" style="width: 60%"
+                                    aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <h3>All Property Location</h3>
+    <div id="map"></div><br><br><br><br><br><br>
+
+    <!-- /.container-fluid -->
+</div>
+<!-- End of Main Content -->
